@@ -14,6 +14,10 @@
 		662A6E981C7A706500F62D5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 662A6E961C7A706500F62D5F /* LaunchScreen.storyboard */; };
 		662A6EA31C7A706900F62D5F /* Song_SamplerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662A6EA21C7A706900F62D5F /* Song_SamplerTests.swift */; };
 		662A6EAE1C7A706A00F62D5F /* Song_SamplerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662A6EAD1C7A706A00F62D5F /* Song_SamplerUITests.swift */; };
+		662A6EC01C7A78DE00F62D5F /* SpotifyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662A6EBF1C7A78DE00F62D5F /* SpotifyManager.swift */; };
+		662A6EC21C7A791600F62D5F /* SpotifyTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662A6EC11C7A791600F62D5F /* SpotifyTrack.swift */; };
+		663C422B1C7AA7520027781C /* customCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663C42291C7AA7520027781C /* customCell.swift */; };
+		663C422C1C7AA7520027781C /* customCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 663C422A1C7AA7520027781C /* customCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		662A6EA91C7A706900F62D5F /* Song SamplerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Song SamplerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		662A6EAD1C7A706A00F62D5F /* Song_SamplerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song_SamplerUITests.swift; sourceTree = "<group>"; };
 		662A6EAF1C7A706A00F62D5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		662A6EBF1C7A78DE00F62D5F /* SpotifyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyManager.swift; sourceTree = "<group>"; };
+		662A6EC11C7A791600F62D5F /* SpotifyTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyTrack.swift; sourceTree = "<group>"; };
+		663C42291C7AA7520027781C /* customCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = customCell.swift; path = ../customCell.swift; sourceTree = "<group>"; };
+		663C422A1C7AA7520027781C /* customCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = customCell.xib; path = ../customCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +107,11 @@
 			children = (
 				662A6E8D1C7A706400F62D5F /* AppDelegate.swift */,
 				662A6E8F1C7A706400F62D5F /* ViewController.swift */,
+				662A6EBF1C7A78DE00F62D5F /* SpotifyManager.swift */,
+				662A6EC11C7A791600F62D5F /* SpotifyTrack.swift */,
 				662A6E911C7A706500F62D5F /* Main.storyboard */,
+				663C42291C7AA7520027781C /* customCell.swift */,
+				663C422A1C7AA7520027781C /* customCell.xib */,
 				662A6E941C7A706500F62D5F /* Assets.xcassets */,
 				662A6E961C7A706500F62D5F /* LaunchScreen.storyboard */,
 				662A6E991C7A706500F62D5F /* Info.plist */,
@@ -194,6 +206,11 @@
 					662A6E891C7A706300F62D5F = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = RA2XSX86JC;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					662A6E9D1C7A706900F62D5F = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -234,6 +251,7 @@
 			files = (
 				662A6E981C7A706500F62D5F /* LaunchScreen.storyboard in Resources */,
 				662A6E951C7A706500F62D5F /* Assets.xcassets in Resources */,
+				663C422C1C7AA7520027781C /* customCell.xib in Resources */,
 				662A6E931C7A706500F62D5F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,6 +277,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				662A6EC01C7A78DE00F62D5F /* SpotifyManager.swift in Sources */,
+				662A6EC21C7A791600F62D5F /* SpotifyTrack.swift in Sources */,
+				663C422B1C7AA7520027781C /* customCell.swift in Sources */,
 				662A6E901C7A706400F62D5F /* ViewController.swift in Sources */,
 				662A6E8E1C7A706400F62D5F /* AppDelegate.swift in Sources */,
 			);
@@ -487,6 +508,7 @@
 				662A6EB41C7A706A00F62D5F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		662A6EB51C7A706A00F62D5F /* Build configuration list for PBXNativeTarget "Song SamplerTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +517,7 @@
 				662A6EB71C7A706A00F62D5F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		662A6EB81C7A706A00F62D5F /* Build configuration list for PBXNativeTarget "Song SamplerUITests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +526,7 @@
 				662A6EBA1C7A706A00F62D5F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
