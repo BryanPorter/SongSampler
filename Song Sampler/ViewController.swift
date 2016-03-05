@@ -99,7 +99,10 @@ extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         let rate:Float? = Float(searchBar.text!)
         if (rate != nil) {
-            player.rate = (rate!/10) % 2
+            player.rate = (rate! * 0.1) % 2
+            if(player.rate == 0){
+                player.rate = 1.0
+            }
         } else {
             SpotifyManager.search(searchBar.text!) {
                 (tracks) in
