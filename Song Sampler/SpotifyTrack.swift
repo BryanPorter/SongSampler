@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AVFoundation
 
 class SpotifyTrack {
     
@@ -14,6 +15,7 @@ class SpotifyTrack {
     var artist = ""
     var previewUrl = ""
     var imageUrl = ""
+    var bigImageUrl = ""
     
     init(itemJSON: [String: AnyObject]) {
         guard let title = itemJSON["name"] as? String
@@ -38,11 +40,27 @@ class SpotifyTrack {
         
         guard let album = itemJSON["album"] as? [String: AnyObject],
             let images = album["images"] as? [[String: AnyObject]],
-            let firstImage = images.last,
-            let imageUrl = firstImage["url"] as? String
+            let lastImage = images.last,
+            let imageUrl = lastImage["url"] as? String
             else {
                 return
         }
         self.imageUrl = imageUrl
+        
+        guard
+            let firstImage = images.first,
+            let bigImageUrl = firstImage["url"] as? String
+            else {
+                return
+        }
+        self.bigImageUrl = bigImageUrl
+    }
+    
+    init(track : RealmTrack){
+        self.title = track.title
+        self.artist = track.artist
+        self.previewUrl = track.previewUrl
+        self.imageUrl = track.albumArt
+        self.bigImageUrl = track.bigAlbumArt
     }
 }

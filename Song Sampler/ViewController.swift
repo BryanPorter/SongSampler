@@ -6,16 +6,18 @@
 //  Copyright © 2016 Bryan Porter. All rights reserved.
 //
 
-import UIKit
+/*
 import AVFoundation
+import RealmSwift
+import UIKit
 
+    var player : AVQueuePlayer!
+    var items = [AVPlayerItem]()
 
 class ViewController: UIViewController {
     
     var tableData = [SpotifyTrack]()
-    var player : AVQueuePlayer!
-    var items = [AVPlayerItem]()
-    
+   
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var toolbar: UIToolbar!
@@ -29,7 +31,7 @@ class ViewController: UIViewController {
         } else {
             playAll()
         }
-        self.player.play()
+        player.play()
     }
     func pauseSong(){
         var toolbarItems = self.toolbar.items
@@ -49,6 +51,7 @@ class ViewController: UIViewController {
     }
     func playAll(){
         //Add songs in a slightly shuffled manner rather than only to end
+        print(player.items().endIndex)
         let currentItems = player.items()
         let incVal = currentItems.endIndex/30
         var insLoc = 1
@@ -63,7 +66,9 @@ class ViewController: UIViewController {
                 player.insertItem(item, afterItem: nil)
             }
         }
-        playSong()
+        if(player.currentItem != nil){
+            playSong()
+        }
     }
 
     func createToolbar() {
@@ -72,7 +77,7 @@ class ViewController: UIViewController {
         let nextButton = UIBarButtonItem.init(barButtonSystemItem: .FastForward, target: self, action: "nextSong")
         let playButton = UIBarButtonItem.init(barButtonSystemItem: .Play, target: self, action: "playSong")
         let playAll = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "playAll")
-        toolbar.setItems([resetButton, flexSpace, playButton, nextButton, flexSpace, playAll], animated: false)
+        toolbar.setItems([resetButton, flexSpace, playButton, nextButton, flexSpace, playAll], animated: true)
     }
     
     override func viewDidLoad() {
@@ -140,7 +145,6 @@ extension ViewController: UITableViewDataSource {
         return cell
     }
 
-    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 65
     }
@@ -151,35 +155,39 @@ extension ViewController: UITableViewDataSource {
             
             let url = NSURL(string: self.tableData[indexPath.row].previewUrl)
             let item = AVPlayerItem(URL: url!)
-            let currentItems = self.player.items()
+            let currentItems = player.items()
             
             print(currentItems)
             if(currentItems != []){
-                if(self.player.canInsertItem(item, afterItem: currentItems[0])){
-                    self.player.insertItem(item, afterItem: currentItems[0])
+                if(player.canInsertItem(item, afterItem: currentItems[0])){
+                    player.insertItem(item, afterItem: currentItems[0])
                 }
             } else {
-                self.player.insertItem(item, afterItem: nil)
+                player.insertItem(item, afterItem: nil)
             }
             self.playSong()
             
         })
-        let addAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Add", handler: { ( action: UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+        let saveAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Save", handler: { ( action: UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
             
-            let url = NSURL(string: self.tableData[indexPath.row].previewUrl)
-            let item = AVPlayerItem(URL: url!)
+            let realm = try! Realm()
             
-            if(self.player.canInsertItem(item, afterItem: nil)){
-                self.player.insertItem(item, afterItem: nil)
+            let track = RealmTrack()
+            track.title = self.tableData[indexPath.row].title
+            track.artist = self.tableData[indexPath.row].artist
+            track.previewUrl = self.tableData[indexPath.row].previewUrl
+            track.albumArt = self.tableData[indexPath.row].imageUrl
+            
+            try! realm.write() {
+                realm.add(track)
+                print("wrote \(track.title) to realm")
             }
-            
-            self.playSong()
         })
         
         PlayNextAction.backgroundColor = UIColor.grayColor()
-        addAction.backgroundColor = UIColor.lightGrayColor()
+        saveAction.backgroundColor = UIColor.lightGrayColor()
         
-        return [PlayNextAction, addAction]
+        return [PlayNextAction, saveAction]
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -193,8 +201,7 @@ extension ViewController: UITableViewDelegate{
 
         let url = NSURL(string: tableData[indexPath.row].previewUrl)
         let item = AVPlayerItem(URL: url!)
-//        player.removeAllItems()
-//        player.insertItem(item, afterItem: nil)
+
         let currentItems = player.items()
 
         if(currentItems != []){
@@ -204,8 +211,8 @@ extension ViewController: UITableViewDelegate{
         } else {
             player.insertItem(item, afterItem: nil)
         }
-//        playSong()
         nextSong()
     }
     
 }
+*/
